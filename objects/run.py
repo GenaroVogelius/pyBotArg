@@ -9,7 +9,7 @@ load_dotenv()
 prod_env=False
 
 if prod_env:
-    credentials = {"account" : os.environ.get('ACCOUNT'), "user" : os.environ.get('USER'), "password": os.environ.get('PASSWORD')}
+    credentials = {"account" : os.environ.get('ACCOUNT'), "user" : os.environ.get('USER'), "password": os.environ.get('PASSWORD'), "broker_name": "veta"}
     tickers_list = [
     "BBAR",
     "BMA",
@@ -36,7 +36,7 @@ if prod_env:
     ]
     budget=20000
 else:
-    credentials = {"account" : os.environ.get('ACCOUNTTEST'), "user" : os.environ.get('USERTEST'), "password": os.environ.get('PASSWORDTEST')}
+    credentials = {"account" : os.environ.get('ACCOUNTTEST'), "user" : os.environ.get('USERTEST'), "password": os.environ.get('PASSWORDTEST'), "broker_name": "veta"}
     tickers_list = [
     "BMA",
     "BYMA",
@@ -59,12 +59,6 @@ carrier.strategy = strategy
 
 
 
-# # * Get the instruments 48 and CI
-# tickets_48 = carrier.format_instruments(tickers_list, liq="24hs")
-# tickets_ci = carrier.format_instruments(tickers_list, liq="CI")
-
-# instruments_to_subscription = tickets_48
-# instruments_to_subscription.extend(tickets_ci)
 
 if __name__ == '__main__':
     carrier.run_strategy()

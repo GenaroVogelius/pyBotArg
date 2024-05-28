@@ -31,11 +31,12 @@ class Broker:
         self._costs = None
         self.credentials = credentials
         environment = pyRofex.Environment.REMARKET
+        self.broker_name = credentials.get("broker_name").lower()
 
         if prod_env:
             self.security_measure()
-            pyRofex._set_environment_parameter("url", "https://api.veta.xoms.com.ar/", pyRofex.Environment.LIVE)
-            pyRofex._set_environment_parameter("ws", "wss://api.veta.xoms.com.ar/", pyRofex.Environment.LIVE)
+            pyRofex._set_environment_parameter("url", f"https://api.{self.broker_name}.xoms.com.ar/", pyRofex.Environment.LIVE)
+            pyRofex._set_environment_parameter("ws", f"wss://api.{self.broker_name}.xoms.com.ar/", pyRofex.Environment.LIVE)
             environment = pyRofex.Environment.LIVE
 
 
